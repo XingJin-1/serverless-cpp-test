@@ -1,7 +1,8 @@
-FROM lganzzzo/alpine-cmake:latest
+FROM debian:latest
 
-RUN apk add linux-headers
-
+RUN apt-get update && apt-get install -y -t buster binutils \
+  git gcc g++ make cmake linux-headers
+  
 ADD . /service
 
 WORKDIR /service/build

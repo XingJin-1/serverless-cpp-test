@@ -4,6 +4,7 @@ include_directories(${PROJECT_SOURCE_DIR}/lib)
 
 link_directories(${PROJECT_SOURCE_DIR}/libhello)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
+set(YOUR_LIBRARIES ${YOUR_LIBRARIES} ${PROJECT_SOURCE_DIR}/lib/libcurl_a_debug.lib)
 
 # Add main.cpp file of project root directory as source file
 set(APP_SRC app.cpp)
@@ -17,4 +18,4 @@ if(Boost_FOUND)
 endif()
 
 target_link_libraries(hello libhello)
-target_link_libraries(hello ${PROJECT_SOURCE_DIR}/lib/curl_a_debug)
+target_link_libraries(hello ${YOUR_LIBRARIES})
