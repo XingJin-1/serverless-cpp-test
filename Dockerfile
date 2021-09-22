@@ -1,15 +1,21 @@
-FROM debian:latest
+FROM ubuntu:xenial
 
-RUN apt-get update && apt-get install -y -t buster binutils \
-  git gcc g++ make cmake linux-headers
-  
-ADD . /service
+RUN apt-get update
+RUN apt-get install -y gcc
+RUN apt-get install -y g++
+RUN apt-get install -y build-essential libtcmalloc-minimal4 && ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so
+RUN apt-get install -y libboost-all-dev
+RUN apt-get install -y libcurl4-gnutls-dev
+RUN apt-get install -y cmake
 
-WORKDIR /service/build
 
-RUN cmake .. -DBOOST_ROOT=/service/include
+ADD . /app
+
+WORKDIR /app/build
+
+RUN cmake ..
 RUN make
 
-EXPOSE 8000 8000
-
-ENTRYPOINT ["./src"]
+EXPOSE 8080/tcp
+WORKDIR /app
+ENTRYPOINT ["./build/src/example"]

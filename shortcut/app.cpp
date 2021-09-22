@@ -8,7 +8,7 @@
 
 #include <curl/curl.h>
 #include <nlohmann/json.hpp>
-#include "HelloDLL.h"
+//#include "HelloDLL.h"
 
 using namespace std;
 using namespace nlohmann;
@@ -24,7 +24,7 @@ int main()
 	
 	// initialize api instance
 	crow::SimpleApp app;
-	
+	/*
 	CROW_ROUTE(app, "/")([]() {
 		// initialize connection instance
 		CURL *curl = curl_easy_init();
@@ -42,7 +42,7 @@ int main()
 		// set url
 		string filter;
 		string get_url;
-		filter = "task%3AserverlessCpp";
+		filter = "task%3Ac%2B%2B";
 		//url = "https://rd-datalake-test.icp.infineon.com/v1/projects/RDDLTST1/artifacts/metadata?filter=";
 		get_url = base_url.append("/v1/projects/RDDLTST1/artifacts/metadata?filter=");
 		get_url.append(filter); // <-- NOTE: see further below!
@@ -54,7 +54,7 @@ int main()
 
 		// set headers 
 		struct curl_slist *list = NULL;
-		list = curl_slist_append(list, "Authorization: Bearer 0004vHuP0pOkwLBDS4xwNVmAtx9U");
+		list = curl_slist_append(list, "Authorization: Bearer 0004oRR5eeNOfF8MQcxYQXEYIr1W");
 		list = curl_slist_append(list, "accept: application/json");
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, list);
 
@@ -68,7 +68,7 @@ int main()
 		InputParameter inputParameter;
 		Event event;
 		// 1.TODO: call init(struct Event *event)
-		event.filter = "task%3AserverlessCpp";
+		event.filter = "task%3Ac%2B%2B";
 		helloDLL.init(&event);
 
 		json jsonReturn = json::parse(readBuffer);
@@ -97,6 +97,10 @@ int main()
 		//return "Hello World";
 		return 1;
 		//return EXIT_SUCCESS;
+	});
+	*/
+	CROW_ROUTE(app, "/")([]() {
+		return "Hello World";
 	});
 	
 	CROW_ROUTE(app, "/xing")([]() {
