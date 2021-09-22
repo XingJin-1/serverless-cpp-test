@@ -54,7 +54,7 @@ int main()
 
 		// set headers 
 		struct curl_slist *list = NULL;
-		list = curl_slist_append(list, "Authorization: Bearer 0004vHuP0pOkwLBDS4xwNVmAtx9U");
+		list = curl_slist_append(list, "Authorization: Bearer 0004TT4JyZDvec8XR396qzCSECCx");
 		list = curl_slist_append(list, "accept: application/json");
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, list);
 
